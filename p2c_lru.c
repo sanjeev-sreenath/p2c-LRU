@@ -2,6 +2,10 @@
 #include<time.h>
 #include<stdlib.h>
 int no_of_frames, no_of_pages, pages[100];
+
+int p2clru();
+int lru();
+
 int main()
 {
     srand(time(0));
@@ -17,21 +21,21 @@ int main()
     scanf("%d", &no_of_pages);
     //no_of_pages = 100;
 
-    printf("Enter limit to random numbers generator: ");
+    printf("Enter limit to random numbers generator for populating page data: ");
     scanf("%d", &limit_random);
     for(i = 0; i < no_of_pages; ++i){
         //scanf("%d", &pages[i]);
         pages[i] = rand()%limit_random;
     }
 
-    printf("---LRU:\n");
+    printf("---LRU---");
     start = clock();
     faults = lru();
     end = clock();
     cpu_time_used = (((double) (end - start)) / CLOCKS_PER_SEC)*1000;
     printf("\nPage faults = %d  Time taken in ms = %f",faults,cpu_time_used);
 
-    printf("\n\n---Power of 2 choices LRU:\n");
+    printf("\n\n---Power of 2 choices LRU---");
     start = clock();
     faults = p2clru();
     end = clock();
